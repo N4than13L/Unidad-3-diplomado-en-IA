@@ -7,6 +7,7 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 
 # 1️⃣ 📂 Cargar el archivo de Excel existente o crear uno nuevo
 archivo_excel = "./datos_limpios.xlsx"
+archivo_excel_modificado = "./datos_limpios_con_" + "graficas" + ".xlsx" 
 hoja_datos = "Sheet1"
 hoja_estadisticas = "Estadísticas"
 
@@ -32,7 +33,7 @@ pivot_df = df.pivot_table(values='Horas_Capacitacion', columns='Departamento', a
 # 4️⃣ 📈 Generar gráficos
 
 # Gráfico de líneas
-plt.figure(figsize=(8, 4))
+plt.figure(figsize=(12, 8))
 sns.lineplot(data=pivot_df, marker='o')
 plt.title('Resultado de capacitacion')
 plt.xlabel('Productividad_%')
@@ -43,7 +44,7 @@ plt.tight_layout()
 plt.savefig("grafico_lineas.png")  # Guardar imagen
 
 # Gráfico de barras
-pivot_df.plot(kind='bar', figsize=(8, 4))
+pivot_df.plot(kind='bar', figsize=(12, 8))
 plt.title('Horas de capacitacion')
 plt.ylabel('Horas de capacitacion')
 plt.xlabel('Departamento')
@@ -86,6 +87,6 @@ ws_datos.add_image(Image("grafico_lineas.png"), "E5")
 ws_datos.add_image(Image("grafico_barras.png"), "E20")
 
 # 9️⃣ 📁 Guardar el archivo Excel sin perder datos previos
-wb.save(archivo_excel)
+wb.save(archivo_excel_modificado)
 
-print(f"✅ Reporte generado y actualizado en: {archivo_excel}")
+print(f"✅ Reporte generado y actualizado en: {archivo_excel_modificado}")
