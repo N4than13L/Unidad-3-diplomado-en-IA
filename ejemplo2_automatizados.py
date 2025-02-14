@@ -27,7 +27,7 @@ if "Fecha" in df.columns:
     df["Fecha"] = pd.to_datetime(df["Fecha"])
 
 # 3️⃣ 🔄 Crear una tabla pivote (Ventas por Categoría y Fecha)
-pivot_df = df.pivot_table(values='Ventas', index='Fecha', columns='Categoría', aggfunc='sum', fill_value=0)
+pivot_df = df.pivot_table(values='Horas_Capacitacion', index='Fecha', columns='Departamento', aggfunc='sum', fill_value=0)
 
 # 4️⃣ 📈 Generar gráficos
 
